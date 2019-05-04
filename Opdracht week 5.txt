@@ -1,0 +1,98 @@
+
+
+1. select now() as Date
+
+2. select concat (last_name, ', ', job_id) as 'employee and Title'
+   from employees
+
+3. select employee_id, last_name, salary, round(salary * 1.155, 0) as 'New Salary'
+from employees
+
+4. select employee_id, last_name, salary, round(salary * 1.155, 0) as 'salary', round(salary * 1.155 - salary, 0) as Increase
+from employees
+
+5. select upper (last_name) as name, length(last_name) as Length
+from employees
+where last_name like 'J%' or last_name like 'A%' or last_name like'M%'
+order by last_name desc;
+
+6. select first_name, last_name, length(concat(first_name, last_name)) as Length
+from employees
+
+7. select last_name, round(salary * 12, 0) as 'Annual Salary'
+from employees
+order by salary desc
+
+8.  select first_name, last_name, job_id
+   from employees
+   where length(last_name) > 8
+
+9. select last_name, salary, (salary + salary * 0.20)as 'new salary'
+from employees
+order by last_name asc
+
+
+10. select last_name, substr(job_id, 1, 2)
+from employees
+where job_id like '%MGR'
+
+Aggregatie
+
+1. select round(max(salary), 0) as Maximum, round(min(salary), 0) as Minimum, round(sum(salary),0) as 'Sum', round(avg(salary), 0) as Average
+from employees
+
+2. select job_id, round(max(salary), 0) as Maximum, round(min(salary), 0) as Minimum, round(sum(salary),0) as 'Sum', round(avg(salary), 0) as Average
+from employees
+Group by job_id
+
+3. select job_id, count(job_id)
+from employees
+Group by job_id
+
+4. select count(distinct manager_id) as 'Number of Managers' 
+from employees
+
+5. select (max(salary) - min(salary)) as Difference
+from employees
+
+6. 
+SELECT manager_id, min(salary) AS 'Minimum'
+FROM employees
+WHERE manager_id IS NOT NULL
+GROUP BY manager_id
+HAVING min(salary) > 6000
+ORDER BY Minimum DESC
+
+
+
+
+7.
+SELECT department_id
+FROM employees
+GROUP BY department_id
+HAVING count(employee_id) > 10
+
+8.
+SELECT  round(avg(salary), 2) as 'Average Salary', count(department_id) as Count
+from employees
+WHERE department_id = 90
+
+9.
+SELECT department_id, sum(salary) as 'Total Salary' 
+from employees
+GROUP BY department_id
+
+10.
+SELECT manager_id as 'Employee ID', round(avg(salary),2) as 'Average Salary' 
+from employees
+GROUP BY manager_id
+HAVING count(employee_id) > 5
+
+11.
+SELECT job_id, count(employee_id) as count
+from employees
+GROUP BY job_id
+HAVING avg(salary) > 8000
+
+
+
